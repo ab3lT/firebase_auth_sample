@@ -19,9 +19,9 @@ class _MyAppState extends State<MyApp> {
         future: _initialization,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return SingIn();
+            return const SingIn();
           } else {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
         },
       ),

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_sample/screen/home/home.dart';
+import 'package:firebase_auth_sample/service/user_managment.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -12,16 +13,17 @@ class SingIn extends StatefulWidget {
 }
 
 class _SingInState extends State<SingIn> {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final UserService userService = UserService();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
   Future<void> _login() async {
     try {
-      await _auth.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passController.text,
+      await userService.signInWithEmailAndPassword(
+        emailController.text,
+        passController.text,
       );
       Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
     } catch (e) {
